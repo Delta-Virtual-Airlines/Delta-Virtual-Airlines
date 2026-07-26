@@ -43,18 +43,27 @@
             <h2>Live Dispatch Audio & Weather Feed</h2>
             <div class="grid" style="margin-bottom: 20px;">
                 <div>
-                    <h4 style="color:var(--delta-blue); margin:0;">🎙️ KMSP Tower</h4>
-                    <audio controls style="width:100%; margin-top:5px;"><source src="https://liveatc.net" type="audio/mpeg"></audio>
+                    <h4 style="color:var(--delta-blue); margin:0 0 5px 0;">🎙️ KMSP Tower Audio Feed</h4>
+                    <audio controls style="width:100%;"><source src="https://liveatc.net" type="audio/mpeg"></audio>
                 </div>
                 <div>
-                    <h4 style="color:var(--delta-blue); margin:0;">🎙️ KATL Approach</h4>
-                    <audio controls style="width:100%; margin-top:5px;"><source src="https://liveatc.net" type="audio/mpeg"></audio>
+                    <h4 style="color:var(--delta-blue); margin:0 0 5px 0;">🎙️ KATL Approach Audio Feed</h4>
+                    <audio controls style="width:100%;"><source src="https://liveatc.net" type="audio/mpeg"></audio>
                 </div>
             </div>
+            
+            <!-- Real-World High-Realism METAR Embed Feeds -->
             <div class="grid" style="margin-bottom: 20px;">
-                <iframe src="https://metar-taf.com" style="width:100%; height:120px; border:1px solid #ccc; border-radius:6px; background:white;"></iframe>
-                <iframe src="https://metar-taf.com" style="width:100%; height:120px; border:1px solid #ccc; border-radius:6px; background:white;"></iframe>
+                <div>
+                    <h4 style="color:var(--delta-blue); margin:0 0 5px 0;">🌦️ KMSP Real-Time METAR Feed</h4>
+                    <iframe src="https://metar-taf.com" style="width:100%; height:120px; border:1px solid #ccc; border-radius:6px; background:white;"></iframe>
+                </div>
+                <div>
+                    <h4 style="color:var(--delta-blue); margin:0 0 5px 0;">🌦️ KATL Real-Time METAR Feed</h4>
+                    <iframe src="https://metar-taf.com" style="width:100%; height:120px; border:1px solid #ccc; border-radius:6px; background:white;"></iframe>
+                </div>
             </div>
+            
             <div style="width:100%; overflow:hidden; border-radius:8px; border:1px solid #ccc;">
                 <iframe src="https://vatsim.net" style="width:100%; height:350px; border:none; background:white;"></iframe>
             </div>
