@@ -1,189 +1,138 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2870
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\margl1440\margr1440\vieww29200\viewh17100\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta Virtual Airlines | Flight Ops</title>
+    <style>
+        :root {
+            --delta-blue: #002244;
+            --delta-red: #E31332;
+            --sky-bg: #F4F7F9;
+            --dark-text: #112233;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            background-color: var(--sky-bg); color: var(--dark-text);
+        }
+        header {
+            background-color: var(--delta-blue); color: white;
+            padding: 20px; text-align: center;
+            border-bottom: 5px solid var(--delta-red);
+        }
+        header h1 { margin: 0; font-size: 28px; letter-spacing: 1px; }
+        header p { margin: 5px 0 0 0; font-style: italic; opacity: 0.8; }
+        .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
+        .card {
+            background: white; padding: 25px; margin-bottom: 25px;
+            border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--delta-blue);
+        }
+        .card h2 { margin-top: 0; color: var(--delta-blue); border-bottom: 2px solid #eee; padding-bottom: 8px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media(max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+        label { display: block; margin: 12px 0 5px 0; font-weight: bold; }
+        input, select {
+            width: 100%; padding: 10px; border: 1px solid #ccc;
+            border-radius: 4px; box-sizing: border-box;
+        }
+        button {
+            background-color: var(--delta-red); color: white; border: none;
+            padding: 12px 20px; font-size: 16px; font-weight: bold;
+            border-radius: 4px; cursor: pointer; margin-top: 20px; width: 100%;
+        }
+        button:hover { background-color: #b80f28; }
+    </style>
+</head>
+<body>
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="en">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>Delta Virtual Airlines | Flight Ops</title>\
-    <style>\
-        :root \{\
-            --delta-blue: #002244;\
-            --delta-red: #E31332;\
-            --sky-bg: #F4F7F9;\
-            --dark-text: #112233;\
-        \}\
-        body \{\
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\
-            margin: 0; padding: 0;\
-            background-color: var(--sky-bg); color: var(--dark-text);\
-        \}\
-        header \{\
-            background-color: var(--delta-blue); color: white;\
-            padding: 20px; text-align: center;\
-            border-bottom: 5px solid var(--delta-red);\
-        \}\
-        header h1 \{ margin: 0; font-size: 28px; letter-spacing: 1px; \}\
-        header p \{ margin: 5px 0 0 0; font-style: italic; opacity: 0.8; \}\
-        .container \{ max-width: 800px; margin: 30px auto; padding: 0 20px; \}\
-        .card \{\
-            background: white; padding: 25px; margin-bottom: 25px;\
-            border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);\
-            border-left: 5px solid var(--delta-blue);\
-        \}\
-        .card h2 \{ margin-top: 0; color: var(--delta-blue); border-bottom: 2px solid #eee; padding-bottom: 8px; \}\
-        .grid \{ display: grid; grid-template-columns: 1fr 1fr; gap: 20px; \}\
-        @media(max-width: 600px) \{ .grid \{ grid-template-columns: 1fr; \} \}\
-        label \{ display: block; margin: 12px 0 5px 0; font-weight: bold; \}\
-        input, select \{\
-            width: 100%; padding: 10px; border: 1px solid #ccc;\
-            border-radius: 4px; box-sizing: border-box;\
-        \}\
-        button \{\
-            background-color: var(--delta-red); color: white; border: none;\
-            padding: 12px 20px; font-size: 16px; font-weight: bold;\
-            border-radius: 4px; cursor: pointer; margin-top: 20px; width: 100%;\
-        \}\
-        button:hover \{ background-color: #b80f28; \}\
-    </style>\
-</head>\
-<body>\
-\
-    <header>\
-        <h1>\uc0\u55357 \u56634  DELTA VIRTUAL AIRLINES</h1>\
-        <p>Keep Climbing \'95 MSFS Cross-Platform Fleet Hub</p>\
-    </header>\
-\
-    <div class="container">\
-        <div class="card">\
-            <h2>Flight Operations Center</h2>\
-            <p>Welcome to the digital terminal. Delta Virtual Airlines replicates real-world commercial flight logistics across a shared global network. Our community supports PC study-level aviators and Xbox/console pilots side-by-side.</p>\
-        </div>\
-\
-        <div class="card">\
-            <h2>Console & Mobile Logbook Submission</h2>\
-            <p>Completed a flight? Submit your PIREP (Pilot Report) below to route your telemetry data straight to our server staff for verification.</p>\
-            \
-            <form id="pirepForm">\
-                <label for="pilotId">Pilot Call Sign / Discord Tag</label>\
-                <input type="text" id="pilotId" placeholder="e.g., DAL1024 or Username" required>\
-\
-                <div class="grid">\
-                    <div>\
-                        <label for="dep">Departure Airport (ICAO)</label>\
-                        <input type="text" id="dep" placeholder="e.g., KMSP" maxlength="4" required>\
-                    </div>\
-                    <div>\
-                        <label for="arr">Arrival Airport (ICAO)</label>\
-                        <input type="text" id="arr" placeholder="e.g., KCVG" maxlength="4" required>\
-                    </div>\
-                </div>\
-\
-                <label for="aircraft">Assigned Fleet Airframe</label>\
-                <select id="aircraft">\
-                    <option>Airbus A321neo</option>\
-                    <option>Boeing 737-900ER</option>\
-                    <option>Boeing 757-200</option>\
-                    <option>Embraer E175 (Delta Connection)</option>\
-                    <option>Airbus A350-900 (Heavy)</option>\
-                </select>\
-\
-                <label for="blockTime">Total Block Time</label>\
-                <input type="text" id="blockTime" placeholder="e.g., 1 hour 45 minutes" required>\
-\
-                <label for="landingRate">Touchdown Landing Force (FPM)</label>\
-                <input type="text" id="landingRate" placeholder="e.g., -142 FPM" required>\
-\
-                <button type="button" onclick="submitToDiscord()">Transmit Flight Report</button>\
-            </form>\
-        </div>\
-    </div>\
-\
-    <script>\
-        function submitToDiscord() \{\
-            // PASTE YOUR DISCORD WEBHOOK URL IN BETWEEN THE QUOTES BELOW:\
-            const webhookUrl = "https://discord.com/api/webhooks/1531034229004173594/T0kEEPz3J-l4Ku5xHW0BmfPJgtHr9VcxWaPSiK_r_lkPEP6hv8aq7PGhQ2MHOzrEbWLg";\
-\
-            const pilotId = document.getElementById('pilotId').value;\
-            const dep = document.getElementById('dep').value.toUpperCase();\
-            const arr = document.getElementById('arr').value.toUpperCase();\
-            const aircraft = document.getElementById('aircraft').value;\
-            const blockTime = document.getElementById('blockTime').value;\
-            const landingRate = document.getElementById('landingRate').value;\
-\
-            if(!pilotId || !dep || !arr || !blockTime || !landingRate) \{\
-                alert("Pre-flight checklist incomplete! Please fill out all tracking boxes.");\
-                return;\
-            \}\
-\
-            const payload = \{\
-                content: `### \uc0\u55357 \u57068  **NEW EXTERNAL WEBSITE PIREP SUBMISSION**\\n* **Pilot Identifier:** $\{pilotId\}\\n* **Route Flown:** $\{dep\} \u10145 \u65039  $\{arr\}\\n* **Fleet Equipment:** $\{aircraft\}\\n* **Total Airtime:** $\{blockTime\}\\n* **Touchdown Telemetry:** $\{landingRate\}\\n\\n*(Staff: Crosscheck hours and award virtual pilot salary via economy terminal!)*`\
-            \};\
-\
-            fetch(webhookUrl, \{\
-                method: 'POST',\
-                headers: \{ 'Content-Type': 'application/json' \},\
-                body: JSON.stringify(payload)\
-            \})\
-            .then(() => \{\
-                alert("Flight packet transmitted successfully to Delta Virtual Operations!");\
-                document.getElementById('pirepForm').reset();\
-            \})\
-            .catch(err => \{\
-                alert("Transmission failure. Check terminal connection.");\
-                console.error(err);\
-            \});\
-        \}\
-    </script>\
-\
-    <!-- Live Pilot Roster Table -->
-<div class="card">
-    <h2>Delta Virtual Active Crew Roster</h2>
-    <p>Current operational pilot statistics and seniority rankings across the network.</p>
-    
-    <table style="width:100%; border-collapse: collapse; margin-top: 15px;">
-        <thead>
-            <tr style="background-color: #002244; color: white; text-align: left;">
-                <th style="padding: 10px; border: 1px solid #ddd;">Pilot ID</th>
-                <th style="padding: 10px; border: 1px solid #ddd;">Rank Status</th>
-                <th style="padding: 10px; border: 1px solid #ddd;">Assigned Domicile</th>
-                <th style="padding: 10px; border: 1px solid #ddd;">Total Hours</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: #E31332;">DAL0001</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Chief Executive Officer</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">KMSP</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">154.2 Hrs</td>
-            </tr>
-            <tr style="background-color: #f9f9f9;">
-                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">DAL0104</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">International Captain</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">KDTW</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">84.5 Hrs</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">DAL0312</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Mainline First Officer</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">KMSP</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">12.0 Hrs</td>
-            </tr>
-            <tr style="background-color: #f9f9f9;">
-                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">DAL0589</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Connection Aviator</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">KCVG</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">3.5 Hrs</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <header>
+        <h1>🔺 DELTA VIRTUAL AIRLINES</h1>
+        <p>Keep Climbing • MSFS Cross-Platform Fleet Hub</p>
+    </header>
 
-</body>\
-</html>\
-}
+    <div class="container">
+        <div class="card">
+            <h2>Flight Operations Center</h2>
+            <p>Welcome to the digital terminal. Delta Virtual Airlines replicates real-world commercial flight logistics across a shared global network. Our community supports PC study-level aviators and Xbox/console pilots side-by-side.</p>
+        </div>
+
+        <div class="card">
+            <h2>Console & Mobile Logbook Submission</h2>
+            <p>Completed a flight? Submit your PIREP (Pilot Report) below to route your telemetry data straight to our server staff for verification.</p>
+            
+            <form id="pirepForm">
+                <label for="pilotId">Pilot Call Sign / Discord Tag</label>
+                <input type="text" id="pilotId" placeholder="e.g., DAL1024 or Username" required>
+
+                <div class="grid">
+                    <div>
+                        <label for="dep">Departure Airport (ICAO)</label>
+                        <input type="text" id="dep" placeholder="e.g., KMSP" maxlength="4" required>
+                    </div>
+                    <div>
+                        <label for="arr">Arrival Airport (ICAO)</label>
+                        <input type="text" id="arr" placeholder="e.g., KCVG" maxlength="4" required>
+                    </div>
+                </div>
+
+                <label for="aircraft">Assigned Fleet Airframe</label>
+                <select id="aircraft">
+                    <option>Airbus A321neo</option>
+                    <option>Boeing 737-900ER</option>
+                    <option>Boeing 757-200</option>
+                    <option>Embraer E175 (Delta Connection)</option>
+                    <option>Airbus A350-900 (Heavy)</option>
+                </select>
+
+                <label for="blockTime">Total Block Time</label>
+                <input type="text" id="blockTime" placeholder="e.g., 1 hour 45 minutes" required>
+
+                <label for="landingRate">Touchdown Landing Force (FPM)</label>
+                <input type="text" id="landingRate" placeholder="e.g., -142 FPM" required>
+
+                <button type="button" onclick="submitToDiscord()">Transmit Flight Report</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function submitToDiscord() {
+            // PASTE YOUR DISCORD WEBHOOK URL IN BETWEEN THE QUOTES BELOW:
+            const webhookUrl = "https://discord.com/api/webhooks/1531034229004173594/T0kEEPz3J-l4Ku5xHW0BmfPJgtHr9VcxWaPSiK_r_lkPEP6hv8aq7PGhQ2MHOzrEbWLg";
+
+            const pilotId = document.getElementById('pilotId').value;
+            const dep = document.getElementById('dep').value.toUpperCase();
+            const arr = document.getElementById('arr').value.toUpperCase();
+            const aircraft = document.getElementById('aircraft').value;
+            const blockTime = document.getElementById('blockTime').value;
+            const landingRate = document.getElementById('landingRate').value;
+
+            if(!pilotId || !dep || !arr || !blockTime || !landingRate) {
+                alert("Pre-flight checklist incomplete! Please fill out all tracking boxes.");
+                return;
+            }
+
+            const payload = {
+                content: `### 🛬 **NEW EXTERNAL WEBSITE PIREP SUBMISSION**\n* **Pilot Identifier:** ${pilotId}\n* **Route Flown:** ${dep} ➡️ ${arr}\n* **Fleet Equipment:** ${aircraft}\n* **Total Airtime:** ${blockTime}\n* **Touchdown Telemetry:** ${landingRate}\n\n*(Staff: Crosscheck hours and award virtual pilot salary via economy terminal!)*`
+            };
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                alert("Flight packet transmitted successfully to Delta Virtual Operations!");
+                document.getElementById('pirepForm').reset();
+            })
+            .catch(err => {
+                alert("Transmission failure. Check terminal connection.");
+                console.error(err);
+            });
+        }
+    </script>
+
+</body>
+</html>
