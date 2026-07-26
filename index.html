@@ -8,48 +8,58 @@
         :root {
             --delta-blue: #002244;
             --delta-red: #E31332;
-            --sky-bg: #F4F7F9;
             --dark-text: #112233;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0; padding: 0;
-            background-color: var(--sky-bg); color: var(--dark-text);
+            background-image: linear-gradient(rgba(0, 34, 68, 0.6), rgba(0, 34, 68, 0.6)), url('https://unsplash.com');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: var(--dark-text);
         }
         header {
-            background-color: var(--delta-blue); color: white;
-            padding: 20px; text-align: center;
-            border-bottom: 5px solid var(--delta-red);
+            background-color: rgba(0, 34, 68, 0.9); color: white;
+            padding: 30px 20px; text-align: center;
+            border-bottom: 5px solid var(--delta-red); backdrop-filter: blur(5px);
         }
-        header h1 { margin: 0; font-size: 28px; letter-spacing: 1px; }
-        header p { margin: 5px 0 0 0; font-style: italic; opacity: 0.8; }
-        .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
+        .logo-container img {
+            width: 80px; height: auto; margin-bottom: 10px;
+        }
+        header h1 { margin: 0; font-size: 32px; letter-spacing: 2px; font-weight: 800; }
+        header p { margin: 8px 0 0 0; font-style: italic; opacity: 0.9; font-size: 16px; letter-spacing: 1px; }
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
         .card {
-            background: white; padding: 25px; margin-bottom: 25px;
-            border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--delta-blue);
+            background: rgba(255, 255, 255, 0.92); padding: 30px; margin-bottom: 30px;
+            border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border-left: 6px solid var(--delta-blue); backdrop-filter: blur(10px);
         }
-        .card h2 { margin-top: 0; color: var(--delta-blue); border-bottom: 2px solid #eee; padding-bottom: 8px; }
+        .card h2 { margin-top: 0; color: var(--delta-blue); border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         @media(max-width: 600px) { .grid { grid-template-columns: 1fr; } }
-        label { display: block; margin: 12px 0 5px 0; font-weight: bold; }
+        label { display: block; margin: 14px 0 6px 0; font-weight: 600; color: var(--delta-blue); }
         input, select {
-            width: 100%; padding: 10px; border: 1px solid #ccc;
-            border-radius: 4px; box-sizing: border-box;
+            width: 100%; padding: 12px; border: 1px solid #bbb; border-radius: 6px; box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.9); font-size: 15px;
         }
         button {
             background-color: var(--delta-red); color: white; border: none;
-            padding: 12px 20px; font-size: 16px; font-weight: bold;
-            border-radius: 4px; cursor: pointer; margin-top: 20px; width: 100%;
+            padding: 14px 20px; font-size: 16px; font-weight: bold;
+            border-radius: 6px; cursor: pointer; margin-top: 25px; width: 100%;
+            box-shadow: 0 4px 15px rgba(227, 19, 50, 0.3); text-transform: uppercase; letter-spacing: 1px;
         }
-        button:hover { background-color: #b80f28; }
+        button:hover { background-color: #b80f28; transform: translateY(-1px); }
+        .livery-link { color: var(--delta-red); font-weight: bold; text-decoration: none; }
     </style>
 </head>
 <body>
 
     <header>
+        <!-- Centered High-Res Delta Widget Logo Layer -->
+        <div class="logo-container">
+            <img src="https://wikimedia.org" alt="Delta Logo">
+        </div>
         <h1>🔺 DELTA VIRTUAL AIRLINES</h1>
-        <p>Keep Climbing • MSFS Cross-Platform Fleet Hub</p>
+        <p>Keep Climbing • MSFS Cross-Platform Flight Operations</p>
     </header>
 
     <div class="container">
@@ -58,13 +68,36 @@
             <p>Welcome to the digital terminal. Delta Virtual Airlines replicates real-world commercial flight logistics across a shared global network. Our community supports PC study-level aviators and Xbox/console pilots side-by-side.</p>
         </div>
 
+        <!-- Cadet Application Form Card -->
+        <div class="card">
+            <h2>New Hire Cadet Application</h2>
+            <p>Ready to join the fleet? Submit your registration request to receive your formal Delta Virtual Call Sign and gate assignments.</p>
+            <form id="appForm">
+                <label for="appPilot">Discord Username</label>
+                <input type="text" id="appPilot" placeholder="e.g., pilot_skyward" required>
+
+                <label for="appPlatform">Primary Simulator Platform</label>
+                <select id="appPlatform">
+                    <option>🎮 Xbox Series X / Series S</option>
+                    <option>🖥️ Microsoft Flight Simulator (PC)</option>
+                    <option>✈️ Live VATSIM / IVAO Network Pilot</option>
+                </select>
+
+                <label for="appReason">Brief Flight Experience / Motivation</label>
+                <input type="text" id="appReason" placeholder="e.g., 200 hours in A320, looking for realistic schedules" required>
+
+                <button type="button" onclick="submitApplication()">File Application</button>
+            </form>
+        </div>
+
+        <!-- PIREP Logbook Card -->
         <div class="card">
             <h2>Console & Mobile Logbook Submission</h2>
             <p>Completed a flight? Submit your PIREP (Pilot Report) below to route your telemetry data straight to our server staff for verification.</p>
             
             <form id="pirepForm">
-                <label for="pilotId">Pilot Call Sign / Discord Tag</label>
-                <input type="text" id="pilotId" placeholder="e.g., DAL1024 or Username" required>
+                <label for="pilotId">Pilot Call Sign / ID Tag</label>
+                <input type="text" id="pilotId" placeholder="e.g., DAL1024" required>
 
                 <div class="grid">
                     <div>
@@ -77,7 +110,7 @@
                     </div>
                 </div>
 
-                <label for="aircraft">Assigned Fleet Airframe</label>
+                <label for="aircraft">Assigned Fleet Airframe & Livery Package</label>
                 <select id="aircraft">
                     <option>Airbus A321neo</option>
                     <option>Boeing 737-900ER</option>
@@ -85,6 +118,7 @@
                     <option>Embraer E175 (Delta Connection)</option>
                     <option>Airbus A350-900 (Heavy)</option>
                 </select>
+                <p style="font-size: 13px; margin-top: 5px;">💡 Need the official paint schemes? Download them here: <a href="https://flightsim.to" target="_blank" class="livery-link">Flightsim.to Custom Liveries</a></p>
 
                 <label for="blockTime">Total Block Time</label>
                 <input type="text" id="blockTime" placeholder="e.g., 1 hour 45 minutes" required>
@@ -92,16 +126,44 @@
                 <label for="landingRate">Touchdown Landing Force (FPM)</label>
                 <input type="text" id="landingRate" placeholder="e.g., -142 FPM" required>
 
-                <button type="button" onclick="submitToDiscord()">Transmit Flight Report</button>
+                <button type="button" onclick="submitPIREP()">Transmit Flight Report</button>
             </form>
+        </div>
+
+        <!-- Google Sheet Embed Roster Card -->
+        <div class="card">
+            <h2>Delta Virtual Active Crew Roster</h2>
+            <p>Current operational pilot statistics and seniority rankings managed live from flight operations.</p>
+            <div style="width: 100%; overflow: hidden; border-radius: 8px; border: 1px solid #ccc; margin-top: 15px;">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTHi7AaWz-fq-q7r0lIMsFQIrE9bi3vih8JbEX1n4_xXlhHSmPtjqPgeLHwERcjrkhhYUEQMcWV5xp8/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" style="width: 100%; height: 400px; border: none; background: white;"></iframe>
+            </div>
         </div>
     </div>
 
     <script>
-        function submitToDiscord() {
-            // PASTE YOUR DISCORD WEBHOOK URL IN BETWEEN THE QUOTES BELOW:
-            const webhookUrl = "https://discord.com/api/webhooks/1531034229004173594/T0kEEPz3J-l4Ku5xHW0BmfPJgtHr9VcxWaPSiK_r_lkPEP6hv8aq7PGhQ2MHOzrEbWLg";
+        // CONFIGURATION ROUTING TERMINALS:
+        const logbookWebhookUrl = "https://discord.com/api/webhooks/1531034229004173594/T0kEEPz3J-l4Ku5xHW0BmfPJgtHr9VcxWaPSiK_r_lkPEP6hv8aq7PGhQ2MHOzrEbWLg";
+        const applicationWebhookUrl = "https://discord.com/api/webhooks/1531049063275958334/0bHKSwSyOLEcg6rkB05OqxRwMLh18sVUvnEYGKerw1-cDY9DqbK9o95tph7DY9oHJf0h";
+        
+        function submitApplication() {
+            const appPilot = document.getElementById('appPilot').value;
+            const appPlatform = document.getElementById('appPlatform').value;
+            const appReason = document.getElementById('appReason').value;
 
+            if(!appPilot || !appReason) {
+                alert("Application checklist incomplete! Please fill out all hiring boxes.");
+                return;
+            }
+
+            const payload = {
+                content: `### 📄 **NEW CADET APPLICANT LOGGED**\n* **Applicant User:** ${appPilot}\n* **Operating Platform:** ${appPlatform}\n* **Background File:** ${appReason}\n\n*(Staff: Check availability and vector user to training gates!)*`
+            };
+
+            transmitToDiscord(applicationWebhookUrl, payload, "Application successfully filed! Check your Discord for recruitment status.");
+            document.getElementById('appForm').reset();
+        }
+
+        function submitPIREP() {
             const pilotId = document.getElementById('pilotId').value;
             const dep = document.getElementById('dep').value.toUpperCase();
             const arr = document.getElementById('arr').value.toUpperCase();
@@ -115,66 +177,12 @@
             }
 
             const payload = {
-                content: `### 🛬 **NEW EXTERNAL WEBSITE PIREP SUBMISSION**\n* **Pilot Identifier:** ${pilotId}\n* **Route Flown:** ${dep} ➡️ ${arr}\n* **Fleet Equipment:** ${aircraft}\n* **Total Airtime:** ${blockTime}\n* **Touchdown Telemetry:** ${landingRate}\n\n*(Staff: Crosscheck hours and award virtual pilot salary via economy terminal!)*`
+                content: `### 🛬 **NEW WEBSITE PIREP SUBMISSION**\n* **Pilot Identifier:** ${pilotId}\n* **Route Flown:** ${dep} ➡️ ${arr}\n* **Fleet Equipment:** ${aircraft}\n* **Total Airtime:** ${blockTime}\n* **Touchdown Telemetry:** ${landingRate}\n\n*(Staff: Crosscheck hours and award virtual pilot salary via economy terminal!)*`
             };
 
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            })
-            .then(() => {
-                alert("Flight packet transmitted successfully to Delta Virtual Operations!");
-                document.getElementById('pirepForm').reset();
-            })
-            .catch(err => {
-                alert("Transmission failure. Check terminal connection.");
-                console.error(err);
-            });
+            transmitToDiscord(logbookWebhookUrl, payload, "Flight packet transmitted successfully to Delta Virtual Operations!");
+            document.getElementById('pirepForm').reset();
         }
-    </script>
-<!-- Live Pilot Roster Table -->
-<div class="card">
-    <h2>Delta Virtual Active Crew Roster</h2>
-    <p>Current operational pilot statistics and seniority rankings across the network.</p>
-    
-    <table style="width:100%; border-collapse: collapse; margin-top: 15px;">
-        <thead>
-            <tr style="background-color: #002244; color: white; text-align: left;">
-                <th style="padding: 10px; border: 1px solid #ddd;">Pilot ID</th>
-                <th style="padding: 10px; border: 1px solid #ddd;">Rank Status</th>
-                <th style="padding: 10px; border: 1px solid #ddd;">Assigned Domicile</th>
-                <th style="padding: 10px; border: 1px solid #ddd;">Total Hours</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: #E31332;">DAL0001</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Chief Executive Officer</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">KMSP</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">154.2 Hrs</td>
-            </tr>
-            <tr style="background-color: #f9f9f9;">
-                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">DAL0104</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">International Captain</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">KDTW</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">84.5 Hrs</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">DAL0312</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Mainline First Officer</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">KMSP</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">12.0 Hrs</td>
-            </tr>
-            <tr style="background-color: #f9f9f9;">
-                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">DAL0589</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Connection Aviator</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">KCVG</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">3.5 Hrs</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
 
-</body>
-</html>
+        function transmitToDiscord(targetUrl, payload, successMessage) {
+            if(targetUrl.includes("YOUR_")) {
