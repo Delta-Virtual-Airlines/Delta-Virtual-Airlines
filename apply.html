@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DALV | Recruitment Gate</title>
+    <style>
+        :root { --delta-blue: #002244; --delta-red: #E31332; --dark-text: #112233; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-image: linear-gradient(rgba(0,34,68,0.65), rgba(0,34,68,0.65)), url('https://unsplash.com'); background-size: cover; background-position: center; background-attachment: fixed; color: var(--dark-text); }
+        header { background-color: rgba(0,34,68,0.9); color: white; padding: 30px; text-align: center; border-bottom: 5px solid var(--delta-red); }
+        .logo-container img { width: 70px; }
+        nav { background: rgba(255,255,255,0.1); padding: 10px; text-align: center; backdrop-filter: blur(5px); }
+        nav a { color: white; text-decoration: none; font-weight: bold; margin: 0 15px; text-transform: uppercase; font-size: 14px; }
+        nav a:hover { color: var(--delta-red); }
+        .container { max-width: 600px; margin: 30px auto; padding: 0 20px; }
+        .card { background: rgba(255,255,255,0.93); padding: 25px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); border-left: 6px solid var(--delta-blue); }
+        .card h2 { margin-top: 0; color: var(--delta-blue); border-bottom: 2px solid #ddd; padding-bottom: 8px; }
+        label { display: block; margin: 14px 0 6px 0; font-weight: 600; color: var(--delta-blue); }
+        input, select { width: 100%; padding: 12px; border: 1px solid #bbb; border-radius: 6px; box-sizing: border-box; background: white; }
+        button { background-color: var(--delta-red); color: white; border: none; padding: 14px 20px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 25px; width: 100%; text-transform: uppercase; }
+        button:hover { background-color: #b80f28; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container"><img src="https://wikimedia.org" alt="Delta Logo"></div>
+        <h1 style="margin:5px 0 0 0; font-size:28px;">🔺 DELTA VIRTUAL RECRUITMENT</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">🗺️ Flight Deck</a>
+        <a href="apply.html">📋 Apply Here</a>
+        <a href="logbook.html">🛬 Log Flight</a>
+        <a href="checkrides.html">🎖️ Checkrides</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h2>New Hire Cadet Application</h2>
+            <form id="appForm">
+                <label for="appPilot">Discord Username</label>
+                <input type="text" id="appPilot" placeholder="e.g., pilot_skyward" required>
+                
+                <label for="appPlatform">Primary Simulator Platform</label>
+                <select id="appPlatform">
+                    <option>🖥️ Microsoft Flight Simulator (PC)</option>
+                    <option>🎮 Xbox Series X / Series S</option>
+                    <option>🎮 PlayStation 5 (MSFS 2024)</option>
+                    <option>✈️ Live VATSIM / IVAO Network Pilot</option>
+                </select>
+                
+                <label for="appReason">Brief Flight Experience / Motivation</label>
+                <input type="text" id="appReason" placeholder="e.g., 200 hours in A320, looking for realistic schedules" required>
+                <button type="button" onclick="submitApplication()">File Application</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // PASTE YOUR APPLICATIONS WEBHOOK LINK IN BETWEEN THE QUOTES BELOW:
+        const urlApplications = "YOUR_APPLICATION_WEBHOOK_URL_HERE";
+
+        function submitApplication() {
+            const pilot = document.getElementById('appPilot').value;
+            const platform = document.getElementById('appPlatform').value;
+            const reason = document.getElementById('appReason').value;
+            if(!pilot || !reason) { alert("Checklist incomplete!"); return; }
+            if(urlApplications.includes("YOUR_")) { alert("Webhook not set!"); return; }
+            
+            const payload = { content: `### 📄 **NEW CADET APPLICANT LOGGED**\n* **User:** ${pilot}\n* **Platform:** ${platform}\n* **Background:** ${reason}` };
+            
+            fetch(urlApplications, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+            .then(() => { alert("Application filed successfully!"); document.getElementById('appForm').reset(); })
+            .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>
