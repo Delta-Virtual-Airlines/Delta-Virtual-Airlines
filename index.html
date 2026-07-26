@@ -139,6 +139,7 @@
             </form>
         </div>
 
+        
         <!-- 2. Logbook PIREP Submission Card -->
         <div class="card">
             <h2>2. Logbook PIREP Submission</h2>
@@ -159,12 +160,33 @@
                 
                 <label for="aircraft">Assigned Fleet Airframe</label>
                 <select id="aircraft">
-                    <option value="Regional">Bombardier CRJ-700</option>
-                    <option value="Regional">Embraer E175</option>
+                    <!-- Delta Connection -->
+                    <option value="Regional">Bombardier CRJ-700 (Delta Connection)</option>
+                    <option value="Regional">Bombardier CRJ-900 (Delta Connection)</option>
+                    <option value="Regional">Embraer E170 (Delta Connection)</option>
+                    <option value="Regional">Embraer E175 (Delta Connection)</option>
+                    <!-- Mainline Airbus Narrow-body -->
+                    <option value="Mainline">Airbus A220-100</option>
+                    <option value="Mainline">Airbus A220-300</option>
+                    <option value="Mainline">Airbus A319-100</option>
+                    <option value="Mainline">Airbus A320-200</option>
+                    <option value="Mainline">Airbus A321-200</option>
                     <option value="Mainline">Airbus A321neo</option>
+                    <!-- Mainline Boeing Narrow-body -->
+                    <option value="Mainline">Boeing 737-800</option>
                     <option value="Mainline">Boeing 737-900ER</option>
+                    <option value="Mainline">Boeing 757-200</option>
+                    <option value="Mainline">Boeing 757-300</option>
+                    <!-- Mainline Wide-body Heavy Fleets -->
+                    <option value="Heavy">Boeing 767-300ER</option>
                     <option value="Heavy">Boeing 767-400ER</option>
+                    <option value="Heavy">Boeing 787-9 Dreamliner</option>
+                    <option value="Heavy">Boeing 787-10 Dreamliner</option>
+                    <option value="Heavy">Airbus A330-200</option>
+                    <option value="Heavy">Airbus A330-300</option>
+                    <option value="Heavy">Airbus A330-900neo</option>
                     <option value="Heavy">Airbus A350-900</option>
+                    <option value="Heavy">Airbus A350-1000</option>
                 </select>
                 
                 <label for="blockTime">Total Block Time</label>
