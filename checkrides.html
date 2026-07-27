@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DALV | Checkrides & Roster</title>
+    <style>
+        :root { --delta-blue: #002244; --delta-red: #E31332; --dark-text: #112233; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-image: linear-gradient(rgba(0,34,68,0.65), rgba(0,34,68,0.65)), url('https://unsplash.com'); background-size: cover; background-position: center; background-attachment: fixed; color: var(--dark-text); }
+        header { background-color: rgba(0,34,68,0.9); color: white; padding: 30px; text-align: center; border-bottom: 5px solid var(--delta-red); }
+        .logo-container img { width: 70px; }
+        nav { background: rgba(255,255,255,0.1); padding: 10px; text-align: center; backdrop-filter: blur(5px); }
+        nav a { color: white; text-decoration: none; font-weight: bold; margin: 0 15px; text-transform: uppercase; font-size: 14px; }
+        nav a:hover { color: var(--delta-red); }
+        .container { max-width: 750px; margin: 30px auto; padding: 0 20px; }
+        .card { background: rgba(255, 255, 255, 0.93); padding: 25px; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); border-left: 6px solid var(--delta-blue); }
+        .card h2 { margin-top: 0; color: var(--delta-blue); border-bottom: 2px solid #ddd; padding-bottom: 8px; }
+        label { display: block; margin: 14px 0 6px 0; font-weight: 600; color: var(--delta-blue); }
+        input { width: 100%; padding: 12px; border: 1px solid #bbb; border-radius: 6px; box-sizing: border-box; background: white; font-size: 15px; }
+        button { background-color: var(--delta-red); color: white; border: none; padding: 14px 20px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 25px; width: 100%; text-transform: uppercase; }
+        button:hover { background-color: #b80f28; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container"><img src="https://wikimedia.org" alt="Delta Logo"></div>
+        <h1 style="margin:5px 0 0 0; font-size:28px;">🔺 TRAINING & PROMOTION CENTER</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">🗺️ Flight Deck</a>
+        <a href="apply.html">📋 Apply Here</a>
+        <a href="logbook.html">🛬 Log Flight</a>
+        <a href="checkrides.html">🎖️ Checkrides</a>
+    </nav>
+
+    <div class="container">
+        <!-- Checkride Request Form -->
+        <div class="card">
+            <h2>3. Type Rating Checkride Request</h2>
+            <p>Achieved your hours milestone? Book a live flight examination slot below with a community Check Airman examiner.</p>
+            <form id="checkrideForm">
+                <label for="chkPilot">Pilot Call Sign / ID Tag</label>
+                <input type="text" id="chkPilot" placeholder="e.g., DAL1024" required>
+                
+                <label for="chkTarget">Target Promotion Airframe</label>
+                <input type="text" id="chkTarget" placeholder="e.g., Boeing 767-400ER Heavy" required>
+                
+                <label for="chkTime">Availability Windows (UTC Time)</label>
+                <input type="text" id="chkTime" placeholder="e.g., Friday 18:00z - 21:00z" required>
+                
+                <button type="button" onclick="submitCheckride()">Book Flight Exam</button>
+            </form>
+        </div>
+
+        <!-- Google Sheet Embed Roster Card -->
+        <div class="card">
+            <h2>Delta Virtual Active Crew Roster</h2>
+            <p>Current operational pilot statistics, seniority tiers, and payroll accounting records.</p>
+            <div style="width: 100%; overflow: hidden; border-radius: 8px; border: 1px solid #ccc; margin-top: 15px;">
+                <!-- PASTE YOUR GOOGLE SHEET EMBED LINK IN THE SRC BELOW -->
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTHi7AaWz-fq-q7r0lIMsFQIrE9bi3vih8JbEX1n4_xXlhHSmPtjqPgeLHwERcjrkhhYUEQMcWV5xp8/pubhtml?widget=true&amp;headers=false" style="width: 100%; height: 450px; border: none; background: white;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // PASTE YOUR CHECKRIDE REQUEST DISCORD WEBHOOK LINK BELOW:
+        const urlCheckrides = "https://discord.com/api/webhooks/1531064659585798265/w3G-nuhgqVkeQetNImlioHqVFZkDEdffF_huhSFBf71lacIjTpPNK5QQFzsNBvO0QVCN";
+
+        function submitCheckride() {
+            const pilot = document.getElementById('chkPilot').value;
+            const target = document.getElementById('chkTarget').value;
+            const time = document.getElementById('chkTime').value;
+            
+            if(!pilot || !target || !time) { alert("Checklist incomplete!"); return; }
+            if(urlCheckrides.includes("YOUR_")) { alert("Webhook link not configured!"); return; }
+            
+            const payload = { 
+                content: `### 🎖️ **NEW TYPE RATING EXAM REQUEST**\n* **Candidate Pilot ID:** ${pilot}\n* **Target Airframe Rating:** ${target}\n* **Availability Window:** ${time}` 
+            };
+            
+            fetch(urlCheckrides, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+            .then(() => { alert("Checkride exam booked successfully!"); document.getElementById('checkrideForm').reset(); })
+            .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>
