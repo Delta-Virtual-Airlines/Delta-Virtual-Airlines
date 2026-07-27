@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DALV | Logbook Submissions</title>
+    <style>
+        :root { --delta-blue: #002244; --delta-red: #E31332; --dark-text: #112233; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-image: linear-gradient(rgba(0,34,68,0.65), rgba(0,34,68,0.65)), url('https://unsplash.com'); background-size: cover; background-position: center; background-attachment: fixed; color: var(--dark-text); }
+        header { background-color: rgba(0,34,68,0.9); color: white; padding: 30px; text-align: center; border-bottom: 5px solid var(--delta-red); }
+        .logo-container img { width: 70px; }
+        nav { background: rgba(255,255,255,0.1); padding: 10px; text-align: center; backdrop-filter: blur(5px); }
+        nav a { color: white; text-decoration: none; font-weight: bold; margin: 0 15px; text-transform: uppercase; font-size: 14px; }
+        nav a:hover { color: var(--delta-red); }
+        .container { max-width: 650px; margin: 30px auto; padding: 0 20px; }
+        .card { background: rgba(255,255,255,0.93); padding: 25px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); border-left: 6px solid var(--delta-blue); }
+        .card h2 { margin-top: 0; color: var(--delta-blue); border-bottom: 2px solid #ddd; padding-bottom: 8px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media(max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+        label { display: block; margin: 14px 0 6px 0; font-weight: 600; color: var(--delta-blue); }
+        input, select { width: 100%; padding: 12px; border: 1px solid #bbb; border-radius: 6px; box-sizing: border-box; background: white; font-size: 15px; }
+        button { background-color: var(--delta-red); color: white; border: none; padding: 14px 20px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 25px; width: 100%; text-transform: uppercase; }
+        button:hover { background-color: #b80f28; }
+        .livery-link { color: var(--delta-red); font-weight: bold; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container"><img src="https://wikimedia.org" alt="Delta Logo"></div>
+        <h1 style="margin:5px 0 0 0; font-size:28px;">🔺 DELTA OPERATIONS LOGBOOK</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">🗺️ Flight Deck</a>
+        <a href="apply.html">📋 Apply Here</a>
+        <a href="logbook.html">🛬 Log Flight</a>
+        <a href="checkrides.html">🎖️ Checkrides</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h2>Console & Mobile Logbook Submission</h2>
+            <p>Completed a flight? Submit your PIREP (Pilot Report) below to route your telemetry data straight to our server staff for verification.</p>
+            
+            <form id="pirepForm">
+                <label for="pilotId">Pilot Call Sign / ID Tag</label>
+                <input type="text" id="pilotId" placeholder="e.g., DAL1024" required>
+                
+                <div class="grid">
+                    <div>
+                        <label for="dep">Departure Airport (ICAO)</label>
+                        <input type="text" id="dep" placeholder="e.g., KMSP" maxlength="4" required>
+                    </div>
+                    <div>
+                        <label for="arr">Arrival Airport (ICAO)</label>
+                        <input type="text" id="arr" placeholder="e.g., KATL" maxlength="4" required>
+                    </div>
+                </div>
+                
+                <label for="aircraft">Assigned Fleet Airframe</label>
+                <select id="aircraft">
+                    <!-- Delta Connection -->
+                    <option value="Regional">Bombardier CRJ-700 (Delta Connection)</option>
+                    <option value="Regional">Bombardier CRJ-900 (Delta Connection)</option>
+                    <option value="Regional">Embraer E170 (Delta Connection)</option>
+                    <option value="Regional">Embraer E175 (Delta Connection)</option>
+                    <!-- Mainline Airbus Narrow-body -->
+                    <option value="Mainline">Airbus A220-100</option>
+                    <option value="Mainline">Airbus A220-300</option>
+                    <option value="Mainline">Airbus A319-100</option>
+                    <option value="Mainline">Airbus A320-200</option>
+                    <option value="Mainline">Airbus A321-200</option>
+                    <option value="Mainline">Airbus A321neo</option>
+                    <!-- Mainline Boeing Narrow-body -->
+                    <option value="Mainline">Boeing 737-800</option>
+                    <option value="Mainline">Boeing 737-900ER</option>
+                    <option value="Mainline">Boeing 757-200</option>
+                    <option value="Mainline">Boeing 757-300</option>
+                    <!-- Mainline Wide-body Heavy Fleets -->
+                    <option value="Heavy">Boeing 767-300ER</option>
+                    <option value="Heavy">Boeing 767-400ER</option>
+                    <option value="Heavy">Boeing 787-9 Dreamliner</option>
+                    <option value="Heavy">Boeing 787-10 Dreamliner</option>
+                    <option value="Heavy">Airbus A330-200</option>
+                    <option value="Heavy">Airbus A330-300</option>
+                    <option value="Heavy">Airbus A330-900neo</option>
+                    <option value="Heavy">Airbus A350-900</option>
+                    <option value="Heavy">Airbus A350-1000</option>
+                </select>
+                <p style="font-size: 13px; margin-top: 5px; color:#555;">💡 Need the official paint schemes? Download them here: <a href="https://flightsim.to" target="_blank" class="livery-link">Flightsim.to Custom Liveries</a></p>
+                
+                <label for="blockTime">Total Block Time</label>
+                <input type="text" id="blockTime" placeholder="e.g., 2 hours 15 minutes" required>
+                
+                <label for="landingRate">Touchdown Landing Force (FPM)</label>
+                <input type="text" id="landingRate" placeholder="e.g., -142 FPM" required>
+                
+                <button type="button" onclick="submitPIREP()">Transmit Flight Report</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // PASTE YOUR LOGBOOK/PIREP WEBHOOK LINK IN BETWEEN THE QUOTES BELOW:
+        const urlLogbook = "https://discord.com/api/webhooks/1531034229004173594/T0kEEPz3J-l4Ku5xHW0BmfPJgtHr9VcxWaPSiK_r_lkPEP6hv8aq7PGhQ2MHOzrEbWLg";
+
+        function submitPIREP() {
+            const id = document.getElementById('pilotId').value;
+            const dep = document.getElementById('dep').value.toUpperCase();
+            const arr = document.getElementById('arr').value.toUpperCase();
+            const acSelect = document.getElementById('aircraft');
+            const acText = acSelect.options[acSelect.selectedIndex].text;
+            const acValue = acSelect.value;
+            const time = document.getElementById('blockTime').value;
+            const rate = document.getElementById('landingRate').value;
+            
+            if(!id || !dep || !arr || !time || !rate) { alert("Checklist incomplete!"); return; }
+            if(urlLogbook.includes("YOUR_")) { alert("Webhook not set!"); return; }
+            
+            let payroll = "$250.00 DALV";
+            if(acValue === "Mainline") payroll = "$500.00 DALV";
+            if(acValue === "Heavy") payroll = "$1,000.00 DALV";
+
+            const payload = { 
+                content: `### 🛬 **NEW FLIGHT PIREP SUBMISSION**\n* **Pilot ID:** ${id}\n* **Route:** ${dep} ➡️ ${arr}\n* **Airframe:** ${acText}\n* **Duration:** ${time}\n* **Touchdown:** ${rate}\n* **Calculated Flight Salary Accrual:** 💰 \`${payroll}\`` 
+            };
+            
+            fetch(urlLogbook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+            .then(() => { alert("Flight packet transmitted successfully to Delta Virtual Operations!"); document.getElementById('pirepForm').reset(); })
+            .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>
